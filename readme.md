@@ -17,13 +17,14 @@ http://bonaparte.github.io/examples-bonaparte/public/examples/
 ## Basic Use
 
 - Download / Clone Repository.
-- Include files: 
+- Copy complete `dist/` folder into your project.
+- Include/Add files: 
 
   ```
-  ./dist/dj-bonaparte.css
-  ./dist/dj-bonaparte.js
+  dj-bonaparte.css
+  dj-bonaparte.js
   ```
-``
+
   
 This makes bonaparte and the bonaparte Semantic UI theme available in your project.
 
