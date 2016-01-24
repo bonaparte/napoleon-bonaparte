@@ -12,7 +12,7 @@ This is a [Bonaparte](https://github.com/bonaparte/bonaparte) build with a custo
 
 ## Examples
 
-http://bonaparte.github.io/dowjones-themes/examples/
+http://bonaparte.github.io/examples-bonaparte/public/examples/
 
 ## Basic Use
 
