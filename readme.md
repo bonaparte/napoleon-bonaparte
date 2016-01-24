@@ -1,4 +1,4 @@
-# Dow Jones Bonaparte
+# Dow Jones Bonaparte Build
 
 - [About](#about)
 - [Basic Use](#basic-use)
@@ -38,15 +38,9 @@ This makes bonaparte and the bonaparte Semantic UI theme available in your proje
   - [< bonaparte-dragable >](https://github.com/bonaparte/bonaparte-dragable)
   - [< bonaparte-dropdown >](https://github.com/bonaparte/bonaparte-dropdown)
 
-## Development
-
-For development use the standard Bonaparte build process:
+## Development / Rebuild
 
 ```
 npm run build
 ```
-or
-```
-npm run watch
-```
-To rebuild/watch `bonaparte.build.js`
+To rebuild `bonaparte.build.js`
