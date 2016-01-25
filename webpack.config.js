@@ -1,13 +1,13 @@
 module.exports = function(name){
     name = name || require("./package.json").name;
     var ExtractTextPlugin = require("extract-text-webpack-plugin");
-    var ExtractCSS = new ExtractTextPlugin(name+".css");
+    var ExtractCSS = new ExtractTextPlugin("bonaparte.css");
 
     return {
         entry: './bonaparte.build.js',
         output: {
             path: "./dist",
-            filename: name+".js"
+            filename: "bonaparte.js"
         },
         module: {
             loaders: [
