@@ -21,8 +21,8 @@ http://bonaparte.github.io/examples-bonaparte/public/examples/
 - Include/Add files: 
 
   ```
-  dj-bonaparte.css
-  dj-bonaparte.js
+  bonaparte.css
+  bonaparte.js
   ```
 
   
