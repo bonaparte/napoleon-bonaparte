@@ -8,4 +8,4 @@ require("bonaparte-toolbar/bonaparte.build");
 require("bonaparte-draggable/bonaparte.build");
 require("bonaparte-dropdown/bonaparte.build");
 
-require("dowjones-theme/bonaparte.build");
+require("bonaparte-theme-napoleon/bonaparte.build");

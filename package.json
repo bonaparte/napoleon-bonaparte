@@ -11,7 +11,7 @@
     "bonaparte-toolbar" :"git+https://bonaparte-read:1437a4a436df422163cb58030e6fc8ab570c11e1@github.com/bonaparte/bonaparte-toolbar.git#gh-pages",
     "bonaparte-draggable" :"git+https://bonaparte-read:1437a4a436df422163cb58030e6fc8ab570c11e1@github.com/bonaparte/bonaparte-draggable.git#gh-pages",
     "bonaparte-dropdown" :"git+https://bonaparte-read:1437a4a436df422163cb58030e6fc8ab570c11e1@github.com/bonaparte/bonaparte-dropdown.git#gh-pages",
-    "dowjones-theme" : "git+https://bonaparte-read:1437a4a436df422163cb58030e6fc8ab570c11e1@github.com/bonaparte/dowjones-theme.git#gh-pages"
+    "bonaparte-theme-napoleon" : "git+https://bonaparte-read:1437a4a436df422163cb58030e6fc8ab570c11e1@github.com/bonaparte/theme-napoleon.git#gh-pages"
   },
 
   "main":"bonaparte.build.js",
@@ -25,8 +25,7 @@
     "node-sass" : "^3.3.2",
     "extract-text-webpack-plugin" : "0.8.2",
     "autoprefixer-loader" : "^2.0.0",
-    "file-loader" : "^0.8.4",
-    "external-css-loader" : "git+https://bonaparte-read:1437a4a436df422163cb58030e6fc8ab570c11e1@github.com/dowjones/external-css-loader.git#gh-pages"
+    "file-loader" : "^0.8.4"
  },
 
   "scripts": {
