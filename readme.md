@@ -2,14 +2,6 @@
 
 [![npm version](https://badge.fury.io/js/bonaparte-build-napoleon.svg)](http://badge.fury.io/js/bonaparte-build-napoleon)
 
-- [About](#about)
-- [Basic Use](#basic-use)
-- [Examples](#examples)
-- [Included Bonaparte Components](#included-bonaparte-components)
-- [Development](#development)
-
-## About
-
 This is a [Bonaparte](https://github.com/bonaparte) build with the [Napoleon](https://github.com/bonaparte/theme-napoleon) theme.
 
 Learn more: [bonaparte.io](http://www.bonaparte.io/getting_started/index.html)
