@@ -12,21 +12,7 @@
 
 This is a [Bonaparte](https://github.com/bonaparte) build with the [Napoleon](https://github.com/bonaparte/theme-napoleon) theme.
 
-[![npm version](https://badge.fury.io/js/bonaparte.svg)](http://badge.fury.io/js/bonaparte)
-
-## Basic Use
-
-- Download / Clone Repository.
-- Copy complete `dist/` folder into your project.
-- Include/Add files: 
-
-  ```
-  bonaparte.css
-  bonaparte.js
-  ```
-
-  
-This makes bonaparte and the bonaparte Semantic UI theme available in your project.
+Learn more: [bonaparte.io](http://www.bonaparte.io/getting_started/index.html)
 
 
 ## Included Bonaparte Components
