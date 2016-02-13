@@ -1,32 +1,10 @@
-# Dow Jones Bonaparte Build
+# Napoleon Bonaparte Build
 
-- [About](#about)
-- [Basic Use](#basic-use)
-- [Examples](#examples)
-- [Included Bonaparte Components](#included-bonaparte-components)
-- [Development](#development)
+[![npm version](https://badge.fury.io/js/bonaparte-build-napoleon.svg)](http://badge.fury.io/js/bonaparte-build-napoleon)
 
-## About
+This is a [Bonaparte](https://github.com/bonaparte) build with the [Napoleon](https://github.com/bonaparte/theme-napoleon) theme.
 
-This is a [Bonaparte](https://github.com/bonaparte/bonaparte) build with a custom [Semantic UI](http://semantic-ui.com) based theme developed for editorial tools at Dow Jones.
-
-## Examples
-
-http://bonaparte.github.io/examples-bonaparte/public/examples/
-
-## Basic Use
-
-- Download / Clone Repository.
-- Copy complete `dist/` folder into your project.
-- Include/Add files: 
-
-  ```
-  bonaparte.css
-  bonaparte.js
-  ```
-
-  
-This makes bonaparte and the bonaparte Semantic UI theme available in your project.
+Learn more: [bonaparte.io](http://www.bonaparte.io/getting_started/index.html)
 
 
 ## Included Bonaparte Components
@@ -36,7 +14,7 @@ This makes bonaparte and the bonaparte Semantic UI theme available in your proje
   - [< bonaparte-sidebar >](https://github.com/bonaparte/bonaparte-sidebar)
   - [< bonaparte-panel >](https://github.com/bonaparte/bonaparte-panel)
   - [< bonaparte-toolbar >](https://github.com/bonaparte/bonaparte-toolbar)
-  - [< bonaparte-dragable >](https://github.com/bonaparte/bonaparte-dragable)
+  - [< bonaparte-draggable >](https://github.com/bonaparte/bonaparte-draggable)
   - [< bonaparte-dropdown >](https://github.com/bonaparte/bonaparte-dropdown)
 
 ## Development / Rebuild
