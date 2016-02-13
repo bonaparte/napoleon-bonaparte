@@ -1,4 +1,6 @@
-# Dow Jones Bonaparte Build
+# Napoleon Bonaparte Build
+
+[![npm version](https://badge.fury.io/js/bonaparte-build-napoleon.svg)](http://badge.fury.io/js/bonaparte-build-napoleon)
 
 - [About](#about)
 - [Basic Use](#basic-use)
@@ -8,11 +10,9 @@
 
 ## About
 
-This is a [Bonaparte](https://github.com/bonaparte/bonaparte) build with a custom [Semantic UI](http://semantic-ui.com) based theme developed for editorial tools at Dow Jones.
+This is a [Bonaparte](https://github.com/bonaparte) build with the [Napoleon](https://github.com/bonaparte/theme-napoleon) theme.
 
-## Examples
-
-http://bonaparte.github.io/examples-bonaparte/public/examples/
+[![npm version](https://badge.fury.io/js/bonaparte.svg)](http://badge.fury.io/js/bonaparte)
 
 ## Basic Use
 
