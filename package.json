@@ -12,15 +12,15 @@
 	},
 
   "dependencies" : {
-    "bonaparte-button": "^0.0.20",
-    "bonaparte-draggable": "^0.0.20",
-    "bonaparte-dropdown": "^0.0.20",
-    "bonaparte-panel": "^0.0.20",
-    "bonaparte-scroll": "^0.0.20",
-		"bonaparte-sidebar": "^0.0.20",
-		"bonaparte-collapsible": "^0.0.20",
-    "bonaparte-toolbar": "^0.0.20",
-		"napoleon-ui" : "^0.0.8"
+    "bonaparte-button": ">=0.0.20",
+    "bonaparte-draggable": ">=0.0.20",
+    "bonaparte-dropdown": ">=0.0.20",
+    "bonaparte-panel": ">=0.0.20",
+    "bonaparte-scroll": ">=0.0.20",
+		"bonaparte-sidebar": ">=0.0.20",
+		"bonaparte-collapsible": ">=0.0.20",
+    "bonaparte-toolbar": ">=0.0.20",
+		"napoleon-ui" : ">=0.0.8"
   },
 
   "main":"bonaparte.build.js",
