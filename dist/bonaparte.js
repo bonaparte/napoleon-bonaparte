@@ -70,15 +70,15 @@
 	// Components
 	__webpack_require__(56);
 	__webpack_require__(74);
-	__webpack_require__(78);
-	__webpack_require__(82);
-	__webpack_require__(92);
+	__webpack_require__(84);
+	__webpack_require__(94);
 	__webpack_require__(98);
-	__webpack_require__(106);
 	__webpack_require__(110);
+	__webpack_require__(118);
+	__webpack_require__(128);
 
 	// Themes
-	__webpack_require__(118);
+	__webpack_require__(136);
 
 
 /***/ },
@@ -138,7 +138,7 @@
 /* 54 */,
 /* 55 */,
 /* 56 */
-[136, 57, 72],
+[154, 57, 72],
 /* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -249,9 +249,9 @@
 
 /***/ },
 /* 59 */
-[137, 60],
+[155, 60],
 /* 60 */
-[138, 63],
+[156, 63],
 /* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -533,150 +533,11 @@
 
 /***/ },
 /* 63 */
-[139, 60, 64, 65, 66],
+[157, 60, 64, 65, 66],
 /* 64 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var bp = __webpack_require__(60);
-	var objct = __webpack_require__(61);
-
-	///////////////////////////////////////////////////////////////////////////////
-	// Public
-
-	module.exports = children;
-	module.exports.normalizeChildren = normalizeChildren;
-	module.exports.mapChildren = mapChildren;
-
-	///////////////////////////////////////////////////////////////////////////////
-
-	function children(tagName, children){
-	  children = normalizeChildren({
-	    role : "root",
-	    children : children || {}
-	  });
-
-	  // var error = map.indexOf(null);
-	  // if(error >= 0) throw "Bonaparte - "+tagName+": Role of child "+error+" is not defined.";
-
-
-	  return function(tag, name) {
-	    bp.tag.DOMReady(function(){checkChildren(tag, children)});
-
-	///////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////
-
-	    function checkChildren(element, child, path){
-
-	      path = path || "<"+tag.tagName+">";
-	      var length = element.children.length;
-	      bp.tag.observe(element);
-	      element.addEventListener("bonaparte.tag.childrenChanged", function(){checkChildren(element, child)})
-
-	      var map = mapChildren(child, length);
-
-
-	      for(var i=0; i<length; i++) {
-
-	        if(!child.children[map[i]]) break;
-	        console.log('setAttribute', path, map[i], child.children[map[i]].role);
-
-	        // element.children[i].getAttribute("bonaparte-"+name+"-role");
-	        element.children[i].setAttribute("bonaparte-"+name+"-role", child.children[map[i]].role);
-
-	        if(typeof child.children[map[i]].children === "object") {
-	          var nextPath = path+"<"+element.children[i].tagName+" index='"+i+"' selector='"+map[i]+"' role='"+child.children[map[i]].role+"'>";
-
-	          checkChildren(element.children[i], child.children[map[i]], nextPath);
-	        }
-	      }
-
-	      if(child.minChildren > length) console.warn("Bonaparte - "+path+": Needs a minimum of "+child.minChildren+" children! "+length+" provided.");
-	      if(child.maxChildren < length) console.warn("Bonaparte - "+path+": Can take a maximum of "+child.maxChildren+" children! "+length+" provided.");
-	    }
-
-	///////////////////////////////////////////////////////////////////////////////
-
-	  }
-	}
-
-	///////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////
-
-	function normalizeChildren(node) {
-	  var child = {
-	    role : node.role || node,
-	    children : {},
-	    formulas : [],
-	    indexes : [],
-	    minChildren : node.minChildren,
-	    maxChildren : node.maxChildren
-	  };
-	  if(!node.children) return child;
-
-	  // Normalize children to object
-	  if(objct.isArray(node.children))
-	    for(var i=0; i<node.children.length; i++) {
-	      child.children[i]= node.children[i];
-	    }
-	  else child.children = node.children;
-
-	  // extract formulas and indexes
-	  var minIndex = 0;
-	  var maxIndex = 0;
-	  var keys = Object.keys(child.children);
-
-	  if(keys.length === 0) return child;
-	  for(var k=0; k<keys.length; k++) {
-	    if(isNaN(keys[k]*1)) {
-	      child.formulas.push(keys[k]);
-	    }
-	    else {
-	      maxIndex= Math.max(maxIndex, parseFloat(keys[k])+1);
-	      minIndex= Math.min(minIndex, keys[k]);
-	      child.indexes.push(keys[k]);
-	    }
-	    child.children[keys[k]]=normalizeChildren(child.children[keys[k]]);
-	  }
-	  var minChildren = maxIndex-minIndex;
-
-	  // Set minChildren and maxChildren
-	  if(minChildren > child.minChildren || !child.minChildren)
-	    child.minChildren = minChildren;
-
-	  if(child.formulas.length === 0) {
-	    if(child.maxChildren < child.minChildren || !child.maxChildren)
-	      child.maxChildren = child.minChildren;
-	  }
-	  return child;
-	}
-
-	///////////////////////////////////////////////////////////////////////////////
-
-	function mapChildren(child, length){
-	  var children = child.children;
-	  var map = Array.apply(null, Array(length)).map(function(){return null});
-	  var formula, index;
-
-	  for(var k=0; k<child.formulas.length; k++) {
-	    formula = child.formulas[k].split("n+");
-	    for(var i=0; i<length; i++) {
-	      index = parseInt(formula[0])*i+parseInt(formula[1]);
-	      if(index >= length) break;
-	      map[index] = child.formulas[k];
-	    }
-	  }
-	  for(var k=0; k<child.indexes.length; k++) {
-	    index = parseFloat(child.indexes[k]);
-	    index = index < 0 ? index+length : index;
-	    map[index] = child.indexes[k];
-	  }
-	  return map;
-	}
-
-
-/***/ },
+[158, 60],
 /* 65 */
-[140, 60],
+[159, 60],
 /* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2428,7 +2289,7 @@
 /***/ },
 /* 73 */,
 /* 74 */
-[136, 75, 77],
+[154, 75, 83],
 /* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2445,36 +2306,43 @@
 /* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var bp = __webpack_require__(59);
+	var bp = __webpack_require__(77);
 
 	var scrollBarWidth = false;
 
 	///////////////////////////////////////////////////////////////////////////////
 	// Public
 
-	module.exports = bp.tag.create("scroll", scroll, ["content"]);
+	module.exports = bp.tag.create("scroll", scroll, ["content", "scrollbar (generated)"]);
 
 	///////////////////////////////////////////////////////////////////////////////
 	function scroll(tag){
-	  var content =  tag.firstElementChild;
-	  var slider, scrollbar, scrollBarVisible;
+	  var content, slider, scrollbar, scrollBarVisible;
 
 	  if(bp.attribute.get(tag, "scrollbar") === "native") return;
 
-	  bp.tag.DOMReady(setupScroller);
+	  ///////////////////////////////////////////////////////////////////////////////
+	  // Initialize
+	  bp.tag.DOMReady(function(){
+	    content = tag.firstElementChild;
+
+	    setupScroller();
+
+	    ///////////////////////////////////////////////////////////////////////////////
+	    // Eventlisteners
+
+	    if(bp.attribute.get(tag, "resize") !== "false")
+	      window.addEventListener("resize", update);
+
+	    content.addEventListener("scroll", updatePosition);
+
+	  });
 
 	///////////////////////////////////////////////////////////////////////////////
 	// Public
 
 	  this.bonaparte.update = update;
 
-	///////////////////////////////////////////////////////////////////////////////
-	// Eventlisteners
-
-	  if(bp.attribute.get(tag, "resize") !== "false")
-	    window.addEventListener("resize", update);
-
-	  content.addEventListener("scroll", updatePosition);
 
 	///////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
@@ -2572,10 +2440,157 @@
 
 /***/ },
 /* 77 */
-72,
+[155, 78],
 /* 78 */
-[136, 79, 81],
+[156, 79],
 /* 79 */
+[157, 78, 80, 81, 82],
+/* 80 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var bp = __webpack_require__(78);
+	var objct = __webpack_require__(61);
+
+	///////////////////////////////////////////////////////////////////////////////
+	// Public
+
+	module.exports = children;
+	module.exports.normalizeChildren = normalizeChildren;
+	module.exports.mapChildren = mapChildren;
+
+	///////////////////////////////////////////////////////////////////////////////
+
+	function children(tagName, children){
+	  children = normalizeChildren({
+	    role : "root",
+	    children : children || {}
+	  });
+
+	  return function(tag, name) {
+	    bp.tag.DOMReady(function(){checkChildren(tag, children)});
+
+	///////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////
+
+	    function checkChildren(element, child, path){
+
+	      path = path || "<"+tag.tagName+">";
+	      var length = element.children.length;
+	      bp.tag.observe(element);
+	      element.addEventListener("bonaparte.tag.childrenChanged", function(){checkChildren(element, child)})
+
+	      var map = mapChildren(child, length);
+
+
+	      for(var i=0; i<length; i++) {
+
+	        if(!child.children[map[i]]) break;
+	        // console.log('setAttribute', path, map[i], child.children[map[i]].role);
+
+	        // element.children[i].getAttribute("bonaparte-"+name+"-role");
+	        element.children[i].setAttribute("bonaparte-"+name+"-role", child.children[map[i]].role);
+
+	        if(typeof child.children[map[i]].children === "object") {
+	          var nextPath = path+"<"+element.children[i].tagName+" index='"+i+"' selector='"+map[i]+"' role='"+child.children[map[i]].role+"'>";
+
+	          checkChildren(element.children[i], child.children[map[i]], nextPath);
+	        }
+	      }
+
+	      if(child.minChildren > length) console.warn("Bonaparte - "+path+": Needs a minimum of "+child.minChildren+" children! "+length+" provided.");
+	      if(child.maxChildren < length) console.warn("Bonaparte - "+path+": Can take a maximum of "+child.maxChildren+" children! "+length+" provided.");
+	    }
+
+	///////////////////////////////////////////////////////////////////////////////
+
+	  }
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////
+
+	function normalizeChildren(node) {
+	  var child = {
+	    role : node.role || node,
+	    children : {},
+	    formulas : [],
+	    indexes : [],
+	    minChildren : node.minChildren,
+	    maxChildren : node.maxChildren
+	  };
+	  if(!node.children) return child;
+
+	  // Normalize children to object
+	  if(objct.isArray(node.children))
+	    for(var i=0; i<node.children.length; i++) {
+	      child.children[i]= node.children[i];
+	    }
+	  else child.children = node.children;
+
+	  // extract formulas and indexes
+	  var minIndex = 0;
+	  var maxIndex = 0;
+	  var keys = Object.keys(child.children);
+
+	  if(keys.length === 0) return child;
+	  for(var k=0; k<keys.length; k++) {
+	    if(isNaN(keys[k]*1)) {
+	      child.formulas.push(keys[k]);
+	    }
+	    else {
+	      maxIndex= Math.max(maxIndex, parseFloat(keys[k])+1);
+	      minIndex= Math.min(minIndex, keys[k]);
+	      child.indexes.push(keys[k]);
+	    }
+	    child.children[keys[k]]=normalizeChildren(child.children[keys[k]]);
+	  }
+	  var minChildren = maxIndex-minIndex;
+
+	  // Set minChildren and maxChildren
+	  if(minChildren > child.minChildren || !child.minChildren)
+	    child.minChildren = minChildren;
+
+	  if(child.formulas.length === 0) {
+	    if(child.maxChildren < child.minChildren || !child.maxChildren)
+	      child.maxChildren = child.minChildren;
+	  }
+	  return child;
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+
+	function mapChildren(child, length){
+	  var children = child.children;
+	  var map = Array.apply(null, Array(length)).map(function(){return null});
+	  var formula, index;
+
+	  for(var k=0; k<child.formulas.length; k++) {
+	    formula = child.formulas[k].split("n+");
+	    for(var i=0; i<length; i++) {
+	      index = parseInt(formula[0])*i+parseInt(formula[1]);
+	      if(index >= length) break;
+	      map[index] = child.formulas[k];
+	    }
+	  }
+	  for(var k=0; k<child.indexes.length; k++) {
+	    index = parseFloat(child.indexes[k]);
+	    index = index < 0 ? index+length : index;
+	    map[index] = child.indexes[k];
+	  }
+	  return map;
+	}
+
+
+/***/ },
+/* 81 */
+[159, 78],
+/* 82 */
+66,
+/* 83 */
+72,
+/* 84 */
+[154, 85, 93],
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -2585,13 +2600,13 @@
 	 * require("bonaparte").mixin.create()
 	 */
 
-	module.exports = __webpack_require__(80);
+	module.exports = __webpack_require__(86);
 
 /***/ },
-/* 80 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var bp = __webpack_require__(59);
+	var bp = __webpack_require__(87);
 	var mousetrap = __webpack_require__(70);
 
 	///////////////////////////////////////////////////////////////////////////////
@@ -2869,18 +2884,30 @@
 
 
 /***/ },
-/* 81 */
+/* 87 */
+[155, 88],
+/* 88 */
+[156, 89],
+/* 89 */
+[157, 88, 90, 91, 92],
+/* 90 */
+[158, 88],
+/* 91 */
+[159, 88],
+/* 92 */
+66,
+/* 93 */
 72,
-/* 82 */
-[136, 83, 91],
-/* 83 */
-[141, 84],
-/* 84 */
+/* 94 */
+[154, 95, 97],
+/* 95 */
+[160, 96],
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	///////////////////////////////////////////////////////////////////////////////
 
-	var bp = __webpack_require__(85);
+	var bp = __webpack_require__(77);
 
 	///////////////////////////////////////////////////////////////////////////////
 	// Public
@@ -2923,162 +2950,11 @@
 
 
 /***/ },
-/* 85 */
-[137, 86],
-/* 86 */
-[138, 87],
-/* 87 */
-[139, 86, 88, 89, 90],
-/* 88 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var bp = __webpack_require__(86);
-	var objct = __webpack_require__(61);
-
-	///////////////////////////////////////////////////////////////////////////////
-	// Public
-
-	module.exports = children;
-	module.exports.normalizeChildren = normalizeChildren;
-	module.exports.mapChildren = mapChildren;
-
-	///////////////////////////////////////////////////////////////////////////////
-
-	function children(tagName, children){
-	  children = normalizeChildren({
-	    role : "root",
-	    children : children || {}
-	  });
-
-	  // var error = map.indexOf(null);
-	  // if(error >= 0) throw "Bonaparte - "+tagName+": Role of child "+error+" is not defined.";
-
-
-	  return function(tag, name) {
-	    bp.tag.DOMReady(function(){checkChildren(tag, children)});
-
-	///////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////
-
-	    function checkChildren(element, child, path){
-
-	      path = path || "<"+tag.tagName+">";
-	      var length = element.children.length;
-	      bp.tag.observe(element);
-	      element.addEventListener("bonaparte.tag.childrenChanged", function(){checkChildren(element, child)})
-
-	      var map = mapChildren(child, length);
-
-
-	      for(var i=0; i<length; i++) {
-
-	        if(!child.children[map[i]]) break;
-	        // console.log('setAttribute', path, map[i], child.children[map[i]].role);
-
-	        // element.children[i].getAttribute("bonaparte-"+name+"-role");
-	        element.children[i].setAttribute("bonaparte-"+name+"-role", child.children[map[i]].role);
-
-	        if(typeof child.children[map[i]].children === "object") {
-	          var nextPath = path+"<"+element.children[i].tagName+" index='"+i+"' selector='"+map[i]+"' role='"+child.children[map[i]].role+"'>";
-
-	          checkChildren(element.children[i], child.children[map[i]], nextPath);
-	        }
-	      }
-
-	      if(child.minChildren > length) console.warn("Bonaparte - "+path+": Needs a minimum of "+child.minChildren+" children! "+length+" provided.");
-	      if(child.maxChildren < length) console.warn("Bonaparte - "+path+": Can take a maximum of "+child.maxChildren+" children! "+length+" provided.");
-	    }
-
-	///////////////////////////////////////////////////////////////////////////////
-
-	  }
-	}
-
-	///////////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////////
-
-	function normalizeChildren(node) {
-	  var child = {
-	    role : node.role || node,
-	    children : {},
-	    formulas : [],
-	    indexes : [],
-	    minChildren : node.minChildren,
-	    maxChildren : node.maxChildren
-	  };
-	  if(!node.children) return child;
-
-	  // Normalize children to object
-	  if(objct.isArray(node.children))
-	    for(var i=0; i<node.children.length; i++) {
-	      child.children[i]= node.children[i];
-	    }
-	  else child.children = node.children;
-
-	  // extract formulas and indexes
-	  var minIndex = 0;
-	  var maxIndex = 0;
-	  var keys = Object.keys(child.children);
-
-	  if(keys.length === 0) return child;
-	  for(var k=0; k<keys.length; k++) {
-	    if(isNaN(keys[k]*1)) {
-	      child.formulas.push(keys[k]);
-	    }
-	    else {
-	      maxIndex= Math.max(maxIndex, parseFloat(keys[k])+1);
-	      minIndex= Math.min(minIndex, keys[k]);
-	      child.indexes.push(keys[k]);
-	    }
-	    child.children[keys[k]]=normalizeChildren(child.children[keys[k]]);
-	  }
-	  var minChildren = maxIndex-minIndex;
-
-	  // Set minChildren and maxChildren
-	  if(minChildren > child.minChildren || !child.minChildren)
-	    child.minChildren = minChildren;
-
-	  if(child.formulas.length === 0) {
-	    if(child.maxChildren < child.minChildren || !child.maxChildren)
-	      child.maxChildren = child.minChildren;
-	  }
-	  return child;
-	}
-
-	///////////////////////////////////////////////////////////////////////////////
-
-	function mapChildren(child, length){
-	  var children = child.children;
-	  var map = Array.apply(null, Array(length)).map(function(){return null});
-	  var formula, index;
-
-	  for(var k=0; k<child.formulas.length; k++) {
-	    formula = child.formulas[k].split("n+");
-	    for(var i=0; i<length; i++) {
-	      index = parseInt(formula[0])*i+parseInt(formula[1]);
-	      if(index >= length) break;
-	      map[index] = child.formulas[k];
-	    }
-	  }
-	  for(var k=0; k<child.indexes.length; k++) {
-	    index = parseFloat(child.indexes[k]);
-	    index = index < 0 ? index+length : index;
-	    map[index] = child.indexes[k];
-	  }
-	  return map;
-	}
-
-
-/***/ },
-/* 89 */
-[140, 86],
-/* 90 */
-66,
-/* 91 */
+/* 97 */
 72,
-/* 92 */
-[136, 93, 97],
-/* 93 */
+/* 98 */
+[154, 99, 109],
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -3088,19 +2964,19 @@
 	 * require("bonaparte").mixin.create()
 	 */
 
-	module.exports = __webpack_require__(94);
+	module.exports = __webpack_require__(100);
 
 
 /***/ },
-/* 94 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var bp = __webpack_require__(59);
+	var bp = __webpack_require__(101);
 
 	///////////////////////////////////////////////////////////////////////////////
 	// Public
 
-	module.exports = bp.tag.create("toolbar", __webpack_require__(95), {
+	module.exports = bp.tag.create("toolbar", __webpack_require__(107), {
 	  0 : {
 	    role :"toolbar",
 	    children: { "1n+0" : "button-group" }
@@ -3110,14 +2986,26 @@
 
 
 /***/ },
-/* 95 */
-[141, 96],
-/* 96 */
+/* 101 */
+[155, 102],
+/* 102 */
+[156, 103],
+/* 103 */
+[157, 102, 104, 105, 106],
+/* 104 */
+[158, 102],
+/* 105 */
+[159, 102],
+/* 106 */
+66,
+/* 107 */
+[160, 108],
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	///////////////////////////////////////////////////////////////////////////////
 
-	var bp = __webpack_require__(59);
+	var bp = __webpack_require__(101);
 
 	///////////////////////////////////////////////////////////////////////////////
 	// Public
@@ -3160,15 +3048,15 @@
 
 
 /***/ },
-/* 97 */
+/* 109 */
 72,
-/* 98 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(99).register();
+	__webpack_require__(111).register();
 
 /***/ },
-/* 99 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -3178,13 +3066,13 @@
 	 * require("bonaparte").mixin.create()
 	 */
 
-	module.exports = __webpack_require__(100);
+	module.exports = __webpack_require__(112);
 
 /***/ },
-/* 100 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var bp = __webpack_require__(101);
+	var bp = __webpack_require__(113);
 
 	///////////////////////////////////////////////////////////////////////////////
 	// Public
@@ -3387,15 +3275,15 @@
 
 
 /***/ },
-/* 101 */
-[137, 102],
-/* 102 */
-[142, 103],
-/* 103 */
-[143, 102, 104, 105],
-/* 104 */
-[144, 101],
-/* 105 */
+/* 113 */
+[155, 114],
+/* 114 */
+[161, 115],
+/* 115 */
+[162, 114, 116, 117],
+/* 116 */
+[163, 113],
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var objct = __webpack_require__(61);
@@ -3437,9 +3325,9 @@
 	}
 
 /***/ },
-/* 106 */
-[136, 107, 109],
-/* 107 */
+/* 118 */
+[154, 119, 127],
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -3449,13 +3337,13 @@
 	 * require("bonaparte").mixin.create()
 	 */
 
-	module.exports = __webpack_require__(108);
+	module.exports = __webpack_require__(120);
 
 /***/ },
-/* 108 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var bp = __webpack_require__(59);
+	var bp = __webpack_require__(121);
 
 	///////////////////////////////////////////////////////////////////////////////
 	// Public
@@ -3552,14 +3440,26 @@
 
 
 /***/ },
-/* 109 */
+/* 121 */
+[155, 122],
+/* 122 */
+[156, 123],
+/* 123 */
+[157, 122, 124, 125, 126],
+/* 124 */
+[158, 122],
+/* 125 */
+[159, 122],
+/* 126 */
+66,
+/* 127 */
 72,
-/* 110 */
-[136, 111, 117],
-/* 111 */
+/* 128 */
+[154, 129, 135],
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var bp = __webpack_require__(112);
+	var bp = __webpack_require__(130);
 	///////////////////////////////////////////////////////////////////////////////
 	// Public
 
@@ -3572,24 +3472,24 @@
 
 
 /***/ },
-/* 112 */
-[137, 113],
-/* 113 */
-[142, 114],
-/* 114 */
-[143, 113, 115, 116],
-/* 115 */
-[144, 112],
-/* 116 */
-105,
-/* 117 */
+/* 130 */
+[155, 131],
+/* 131 */
+[161, 132],
+/* 132 */
+[162, 131, 133, 134],
+/* 133 */
+[163, 130],
+/* 134 */
+117,
+/* 135 */
 72,
-/* 118 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Bonaparte //////////////////////////////////////////////////////////////////
 
-	__webpack_require__(119);
+	__webpack_require__(137);
 
 	// SUI ////////////////////////////////////////////////////////////////////////
 
@@ -3602,28 +3502,28 @@
 
 	// require("./src/less/button.less"); // require("./SUI/definitions/elements/button.less");
 	// require("./src/less/container.less"); // require("./SUI/definitions/elements/container.less");
-	__webpack_require__(128);
+	__webpack_require__(146);
 	// require("./SUI/definitions/elements/header.less");
 	// require("./src/less/header.less");
 	// require("./SUI/definitions/elements/flag.less");
 	// require("./SUI/definitions/elements/icon.less");
 	// require("./SUI/definitions/elements/image.less");
-	__webpack_require__(129);
-	__webpack_require__(130);
+	__webpack_require__(147);
+	__webpack_require__(148);
 	// require("./SUI/definitions/elements/list.less");
 	// require("./SUI/definitions/elements/loader.less");
 	// require("./SUI/definitions/elements/rail.less");
 	// require("./SUI/definitions/elements/reveal.less");
-	__webpack_require__(131);
+	__webpack_require__(149);
 	// require("./SUI/definitions/elements/step.less");
 
 	/* Collections */
 	// require("./SUI/definitions/collections/breadcrumb.less");
-	__webpack_require__(132);
-	__webpack_require__(133);
+	__webpack_require__(150);
+	__webpack_require__(151);
 	// require("./SUI/definitions/collections/menu.less");
 	// require("./SUI/definitions/collections/message.less");
-	__webpack_require__(134);
+	__webpack_require__(152);
 
 
 	/* Views */
@@ -3636,7 +3536,7 @@
 
 	/* Modules */
 	// require("./SUI/definitions/modules/accordion.less");
-	__webpack_require__(135);
+	__webpack_require__(153);
 	// require("./SUI/definitions/modules/dimmer.less");
 	// require("./SUI/definitions/modules/dropdown.less");
 	// require("./SUI/definitions/modules/embed.less");
@@ -3654,40 +3554,40 @@
 
 
 /***/ },
-/* 119 */
+/* 137 */
 72,
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */,
-/* 128 */
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */
 72,
-/* 129 */
+/* 147 */
 72,
-/* 130 */
+/* 148 */
 72,
-/* 131 */
+/* 149 */
 72,
-/* 132 */
+/* 150 */
 72,
-/* 133 */
+/* 151 */
 72,
-/* 134 */
+/* 152 */
 72,
-/* 135 */
+/* 153 */
 72,
-/* 136 */
+/* 154 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__, __webpack_module_template_argument_1__) {
 
 	__webpack_require__(__webpack_module_template_argument_0__).register();
 	__webpack_require__(__webpack_module_template_argument_1__);
 
 /***/ },
-/* 137 */
+/* 155 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	///////////////////////////////////////////////////////////////////////////////
@@ -3717,7 +3617,7 @@
 
 
 /***/ },
-/* 138 */
+/* 156 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	var objct = __webpack_require__(61);
@@ -3874,7 +3774,7 @@
 
 
 /***/ },
-/* 139 */
+/* 157 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__, __webpack_module_template_argument_1__, __webpack_module_template_argument_2__, __webpack_module_template_argument_3__) {
 
 	var objct = __webpack_require__(61);
@@ -3998,7 +3898,148 @@
 
 
 /***/ },
-/* 140 */
+/* 158 */
+/***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
+
+	var bp = __webpack_require__(__webpack_module_template_argument_0__);
+	var objct = __webpack_require__(61);
+
+	///////////////////////////////////////////////////////////////////////////////
+	// Public
+
+	module.exports = children;
+	module.exports.normalizeChildren = normalizeChildren;
+	module.exports.mapChildren = mapChildren;
+
+	///////////////////////////////////////////////////////////////////////////////
+
+	function children(tagName, children){
+	  children = normalizeChildren({
+	    role : "root",
+	    children : children || {}
+	  });
+
+	  // var error = map.indexOf(null);
+	  // if(error >= 0) throw "Bonaparte - "+tagName+": Role of child "+error+" is not defined.";
+
+
+	  return function(tag, name) {
+	    bp.tag.DOMReady(function(){checkChildren(tag, children)});
+
+	///////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////
+
+	    function checkChildren(element, child, path){
+
+	      path = path || "<"+tag.tagName+">";
+	      var length = element.children.length;
+	      bp.tag.observe(element);
+	      element.addEventListener("bonaparte.tag.childrenChanged", function(){checkChildren(element, child)})
+
+	      var map = mapChildren(child, length);
+
+
+	      for(var i=0; i<length; i++) {
+
+	        if(!child.children[map[i]]) break;
+	        console.log('setAttribute', path, map[i], child.children[map[i]].role);
+
+	        // element.children[i].getAttribute("bonaparte-"+name+"-role");
+	        element.children[i].setAttribute("bonaparte-"+name+"-role", child.children[map[i]].role);
+
+	        if(typeof child.children[map[i]].children === "object") {
+	          var nextPath = path+"<"+element.children[i].tagName+" index='"+i+"' selector='"+map[i]+"' role='"+child.children[map[i]].role+"'>";
+
+	          checkChildren(element.children[i], child.children[map[i]], nextPath);
+	        }
+	      }
+
+	      if(child.minChildren > length) console.warn("Bonaparte - "+path+": Needs a minimum of "+child.minChildren+" children! "+length+" provided.");
+	      if(child.maxChildren < length) console.warn("Bonaparte - "+path+": Can take a maximum of "+child.maxChildren+" children! "+length+" provided.");
+	    }
+
+	///////////////////////////////////////////////////////////////////////////////
+
+	  }
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////
+
+	function normalizeChildren(node) {
+	  var child = {
+	    role : node.role || node,
+	    children : {},
+	    formulas : [],
+	    indexes : [],
+	    minChildren : node.minChildren,
+	    maxChildren : node.maxChildren
+	  };
+	  if(!node.children) return child;
+
+	  // Normalize children to object
+	  if(objct.isArray(node.children))
+	    for(var i=0; i<node.children.length; i++) {
+	      child.children[i]= node.children[i];
+	    }
+	  else child.children = node.children;
+
+	  // extract formulas and indexes
+	  var minIndex = 0;
+	  var maxIndex = 0;
+	  var keys = Object.keys(child.children);
+
+	  if(keys.length === 0) return child;
+	  for(var k=0; k<keys.length; k++) {
+	    if(isNaN(keys[k]*1)) {
+	      child.formulas.push(keys[k]);
+	    }
+	    else {
+	      maxIndex= Math.max(maxIndex, parseFloat(keys[k])+1);
+	      minIndex= Math.min(minIndex, keys[k]);
+	      child.indexes.push(keys[k]);
+	    }
+	    child.children[keys[k]]=normalizeChildren(child.children[keys[k]]);
+	  }
+	  var minChildren = maxIndex-minIndex;
+
+	  // Set minChildren and maxChildren
+	  if(minChildren > child.minChildren || !child.minChildren)
+	    child.minChildren = minChildren;
+
+	  if(child.formulas.length === 0) {
+	    if(child.maxChildren < child.minChildren || !child.maxChildren)
+	      child.maxChildren = child.minChildren;
+	  }
+	  return child;
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+
+	function mapChildren(child, length){
+	  var children = child.children;
+	  var map = Array.apply(null, Array(length)).map(function(){return null});
+	  var formula, index;
+
+	  for(var k=0; k<child.formulas.length; k++) {
+	    formula = child.formulas[k].split("n+");
+	    for(var i=0; i<length; i++) {
+	      index = parseInt(formula[0])*i+parseInt(formula[1]);
+	      if(index >= length) break;
+	      map[index] = child.formulas[k];
+	    }
+	  }
+	  for(var k=0; k<child.indexes.length; k++) {
+	    index = parseFloat(child.indexes[k]);
+	    index = index < 0 ? index+length : index;
+	    map[index] = child.indexes[k];
+	  }
+	  return map;
+	}
+
+
+/***/ },
+/* 159 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	var bp = __webpack_require__(__webpack_module_template_argument_0__);
@@ -4029,7 +4070,7 @@
 
 
 /***/ },
-/* 141 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	/*
@@ -4042,7 +4083,7 @@
 	module.exports = __webpack_require__(__webpack_module_template_argument_0__);
 
 /***/ },
-/* 142 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	var objct = __webpack_require__(61);
@@ -4213,7 +4254,7 @@
 	///////////////////////////////////////////////////////////////////////////////
 
 /***/ },
-/* 143 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__, __webpack_module_template_argument_1__, __webpack_module_template_argument_2__) {
 
 	var objct = __webpack_require__(61);
@@ -4359,7 +4400,7 @@
 
 
 /***/ },
-/* 144 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
 	var bp = __webpack_require__(__webpack_module_template_argument_0__);
